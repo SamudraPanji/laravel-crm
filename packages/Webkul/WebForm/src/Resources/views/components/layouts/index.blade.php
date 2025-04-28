@@ -1,64 +1,32 @@
 <!DOCTYPE html>
 
-<html
-    lang="{{ app()->getLocale() }}"
-    dir="{{ in_array(app()->getLocale(), ['fa', 'ar']) ? 'rtl' : 'ltr' }}"
->
+<html lang="{{ app()->getLocale() }}" dir="{{ in_array(app()->getLocale(), ['fa', 'ar']) ? 'rtl' : 'ltr' }}">
 
 <head>
     <title>{{ $title ?? '' }}</title>
 
     <meta charset="UTF-8">
 
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="IE=edge"
-    >
-    
-    <meta
-        http-equiv="content-language"
-        content="{{ app()->getLocale() }}"
-    >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
-    <meta
-        name="base-url"
-        content="{{ url()->to('/') }}"
-    >
+    <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="base-url" content="{{ url()->to('/') }}">
 
     @stack('meta')
 
-    {{
-        vite()->set(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'], 'webform')
-    }}
+    {{ vite()->set(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'], 'webform') }}
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"
-        rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" />
 
     @if ($favicon = core()->getConfigData('general.design.admin_logo.favicon'))
-        <link
-            type="image/x-icon"
-            href="{{ Storage::url($favicon) }}"
-            rel="shortcut icon"
-            sizes="16x16"
-        >
+        <link type="image/x-icon" href="{{ Storage::url($favicon) }}" rel="shortcut icon" sizes="16x16">
     @else
-        <link
-            type="image/x-icon"
-            href="{{ vite()->asset('images/favicon.ico') }}"
-            rel="shortcut icon"
-            sizes="16x16"
-        />
+        <link type="image/x-icon" href="{{ asset('override/logo/favicon.ico') }}" rel="shortcut icon" sizes="16x16" />
     @endif
 
     @stack('styles')

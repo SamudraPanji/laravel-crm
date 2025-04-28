@@ -14,14 +14,14 @@
             @else
                 <img
                     class="h-10 max-sm:hidden"
-                    src="{{ request()->cookie('dark_mode') ? vite()->asset('images/dark-logo.svg') : vite()->asset('images/logo.svg') }}"
+                    src="{{ request()->cookie('dark_mode') ? asset('override/logo/dark-logo.png') : asset('override/logo/logo.png') }}"
                     id="logo-image"
                     alt="{{ config('app.name') }}"
                 />
 
                 <img
                     class="h-10 sm:hidden"
-                    src="{{ request()->cookie('dark_mode') ? vite()->asset('images/mobile-dark-logo.svg') : vite()->asset('images/mobile-light-logo.svg') }}"
+                    src="{{ request()->cookie('dark_mode') ? asset('override/logo/mobile-logo.png') : asset('override/logo/mobile-logo.png') }}"
                     id="logo-image"
                     alt="{{ config('app.name') }}"
                 />
@@ -63,14 +63,14 @@
                 @php($user = auth()->guard('user')->user())
 
                 @if ($user->image)
-                    <button class="flex h-9 w-9 cursor-pointer overflow-hidden rounded-full hover:opacity-80 focus:opacity-80">
+                    <button class="flex overflow-hidden rounded-full cursor-pointer h-9 w-9 hover:opacity-80 focus:opacity-80">
                         <img
                             src="{{ $user->image_url }}"
-                            class="h-full w-full object-cover"
+                            class="object-cover w-full h-full"
                         />
                     </button>
                 @else
-                    <button class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-pink-400 font-semibold leading-6 text-white">
+                    <button class="flex items-center justify-center font-semibold leading-6 text-white bg-pink-400 rounded-full cursor-pointer h-9 w-9">
                         {{ substr($user->name, 0, 1) }}
                     </button>
                 @endif
@@ -80,7 +80,7 @@
             <x-slot:content class="mt-2 border-t-0 !p-0">
                 <div class="flex items-center gap-1.5 border border-x-0 border-b-gray-300 px-5 py-2.5 dark:border-gray-800">
                     <img
-                        src="{{ url('cache/logo.png') }}"
+                        src="{{ asset('override/logo/mobile-logo.png') }}"
                         width="24"
                         height="24"
                     />
@@ -93,7 +93,7 @@
 
                 <div class="grid gap-1 pb-2.5">
                     <a
-                        class="cursor-pointer px-5 py-2 text-base text-gray-800 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-950"
+                        class="px-5 py-2 text-base text-gray-800 cursor-pointer hover:bg-gray-100 dark:text-white dark:hover:bg-gray-950"
                         href="{{ route('admin.user.account.edit') }}"
                     >
                         @lang('admin::app.layouts.my-account')
@@ -108,7 +108,7 @@
                     </x-admin::form>
 
                     <a
-                        class="cursor-pointer px-5 py-2 text-base text-gray-800 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-950"
+                        class="px-5 py-2 text-base text-gray-800 cursor-pointer hover:bg-gray-100 dark:text-white dark:hover:bg-gray-950"
                         href="{{ route('admin.session.destroy') }}"
                         onclick="event.preventDefault(); document.getElementById('adminLogout').submit();"
                     >
@@ -142,9 +142,9 @@
                 return {
                     isDarkMode: {{ request()->cookie('dark_mode') ?? 0 }},
 
-                    logo: "{{ vite()->asset('images/logo.svg') }}",
+                    logo: "{{ asset('override/logo/logo.png') }}",
 
-                    dark_logo: "{{ vite()->asset('images/dark-logo.svg') }}",
+                    dark_logo: "{{ asset('override/logo/dark-logo.png') }}",
                 };
             },
 

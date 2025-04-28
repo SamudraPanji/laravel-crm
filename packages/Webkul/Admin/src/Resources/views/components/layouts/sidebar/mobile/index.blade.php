@@ -26,7 +26,7 @@
                 @else
                     <img
                         class="h-10"
-                        src="{{ request()->cookie('dark_mode') ? vite()->asset('images/dark-logo.svg') : vite()->asset('images/logo.svg') }}"
+                        src="{{ request()->cookie('dark_mode') ? asset('override/logo/dark-logo.png') : asset('override/logo/logo.png') }}"
                         id="logo-image"
                         alt="{{ config('app.name') }}"
                     />
@@ -46,12 +46,12 @@
                             @endphp
 
                             <div
-                                class="menu-item relative"
+                                class="relative menu-item"
                                 data-menu-key="{{ $menuKey }}"
                             >
                                 <a
                                     href="{{ ! in_array($menuItem->getKey(), ['settings', 'configuration']) && $menuItem->haveChildren() ? 'javascript:void(0)' : $menuItem->getUrl() }}"
-                                    class="menu-link flex items-center justify-between rounded-lg p-2 transition-colors duration-200"
+                                    class="flex items-center justify-between p-2 transition-colors duration-200 rounded-lg menu-link"
                                     @if ($menuItem->haveChildren() && !in_array($menuKey, ['settings', 'configuration']))
                                         @click.prevent="toggleMenu('{{ $menuKey }}')"
                                     @endif
@@ -60,12 +60,12 @@
                                     <div class="flex items-center gap-3">
                                         <span class="{{ $menuItem->getIcon() }} text-2xl"></span>
 
-                                        <p class="whitespace-nowrap font-semibold">{{ $menuItem->getName() }}</p>
+                                        <p class="font-semibold whitespace-nowrap">{{ $menuItem->getName() }}</p>
                                     </div>
 
                                     @if ($menuItem->haveChildren())
                                         <span
-                                            class="transform text-lg transition-transform duration-300"
+                                            class="text-lg transition-transform duration-300 transform"
                                             :class="{ 'icon-arrow-up': activeMenu === '{{ $menuKey }}', 'icon-arrow-down': activeMenu !== '{{ $menuKey }}' }"
                                         ></span>
                                     @endif
@@ -73,13 +73,13 @@
 
                                 @if ($menuItem->haveChildren() && !in_array($menuKey, ['settings', 'configuration']))
                                     <div
-                                        class="submenu ml-1 mt-1 overflow-hidden rounded-b-lg border-l-2 transition-all duration-300 dark:border-gray-700"
+                                        class="mt-1 ml-1 overflow-hidden transition-all duration-300 border-l-2 rounded-b-lg submenu dark:border-gray-700"
                                         :class="{ 'max-h-[500px] py-2 border-l-brandColor bg-gray-50 dark:bg-gray-900': activeMenu === '{{ $menuKey }}' || {{ $hasActiveChild ? 'true' : 'false' }}, 'max-h-0 py-0 border-transparent bg-transparent': activeMenu !== '{{ $menuKey }}' && !{{ $hasActiveChild ? 'true' : 'false' }} }"
                                     >
                                         @foreach ($menuItem->getChildren() as $subMenuItem)
                                             <a
                                                 href="{{ $subMenuItem->getUrl() }}"
-                                                class="submenu-link block whitespace-nowrap p-2 pl-10 text-sm transition-colors duration-200"
+                                                class="block p-2 pl-10 text-sm transition-colors duration-200 submenu-link whitespace-nowrap"
                                                 :class="{ 'text-brandColor font-medium bg-gray-100 dark:bg-gray-800': '{{ $subMenuItem->isActive() }}' === '1', 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800': '{{ $subMenuItem->isActive() }}' !== '1' }">
                                                 {{ $subMenuItem->getName() }}
                                             </a>

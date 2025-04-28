@@ -7,12 +7,12 @@
     <!-- Error page Information -->
 	<div class="flex h-[100vh] items-center justify-center bg-white dark:bg-gray-900">
         <div class="flex max-w-[745px] items-center gap-5">
-            <div class="flex w-full flex-col gap-6">
+            <div class="flex flex-col w-full gap-6">
                 <img
                     src="{{ 
                         request()->cookie('dark_mode') 
-                        ? vite()->asset('images/dark-logo.svg') 
-                        : vite()->asset('images/logo.svg') 
+                        ? asset('override/logo/dark-logo.png') 
+                        : asset('override/logo/logo.png') 
                     }}"
                     class="w-40 ltr:pr-16 rtl:pl-16"
                 >
@@ -28,7 +28,7 @@
                 <div class="flex items-center gap-2.5">
                     <a
                         href="{{ url()->previous() }}"
-                        class="cursor-pointer text-sm font-semibold text-blue-600 transition-all hover:underline"
+                        class="text-sm font-semibold text-blue-600 transition-all cursor-pointer hover:underline"
                     >
                         @lang('admin::app.errors.go-back')
                     </a>
@@ -41,7 +41,7 @@
 
                     <a
                         href="{{ route('admin.dashboard.index') }}"
-                        class="hover:underlsine text-sm font-semibold text-blue-600 transition-all"
+                        class="text-sm font-semibold text-blue-600 transition-all hover:underlsine"
                     >
                         @lang('admin::app.errors.dashboard')
                     </a>

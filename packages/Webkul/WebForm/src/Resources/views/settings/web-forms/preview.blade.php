@@ -24,8 +24,8 @@
                 <div class="flex flex-col items-center gap-5">
                     <!-- Logo -->
                     <img
-                        class="w-max"
-                        src="{{ vite()->asset('images/logo.svg') }}"
+                        class="h-[30px] mb-2 w-max"
+                        src="{{ asset('override/logo/logo.png') }}"
                         alt="{{ config('app.name') }}"
                     />
 

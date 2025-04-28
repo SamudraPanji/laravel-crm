@@ -16,7 +16,7 @@
             @else
                 <img
                     class="w-max"
-                    src="{{ vite()->asset('images/logo.svg') }}"
+                    src="{{ asset('override/logo/logo.png') }}"
                     alt="{{ config('app.name') }}"
                 />
             @endif
@@ -38,7 +38,7 @@
                         :value="$token"
                     />
 
-                    <div class="border-y p-4 dark:border-gray-800">
+                    <div class="p-4 border-y dark:border-gray-800">
                         <!-- Email -->
                         <x-admin::form.control-group>
                             <x-admin::form.control-group.label class="required">
@@ -102,7 +102,7 @@
                     <div class="flex items-center justify-between p-4">
                         <!-- Back Button-->
                         <a
-                            class="cursor-pointer text-xs font-semibold leading-6 text-brandColor"
+                            class="text-xs font-semibold leading-6 cursor-pointer text-brandColor"
                             href="{{ route('admin.session.create') }}"
                         >
                             @lang('admin::app.users.reset-password.back-link-title')
